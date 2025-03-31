@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { generateMockData } from '../utils/mockGenerator';
+import { useState } from "react";
+import { generateMockData } from "../utils/mockGenerator";
 
 export default function Home() {
   const [typeInput, setTypeInput] = useState(`interface User {
@@ -12,23 +12,25 @@ export default function Home() {
   createdAt: Date;
   tags?: string[];
 }`);
-  const [mockOutput, setMockOutput] = useState('');
+  const [mockOutput, setMockOutput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>("");
 
   const handleGenerateMockData = async () => {
     setIsLoading(true);
-    setError('');
+    setError("");
 
     try {
       const result = generateMockData(typeInput);
       if (result.success) {
         setMockOutput(JSON.stringify(result.data, null, 2));
       } else {
-        setError(result.error || 'Failed to generate mock data');
+        setError(result.error || "Failed to generate mock data");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unexpected error occurred');
+      setError(
+        err instanceof Error ? err.message : "An unexpected error occurred"
+      );
     } finally {
       setIsLoading(false);
     }
@@ -43,7 +45,8 @@ export default function Home() {
           </h1>
 
           <p className="text-center text-purple-600 mb-10 text-lg">
-            Enter your TypeScript type definition below and get mock data generated instantly.
+            Enter your TypeScript type definition below and get mock data
+            generated instantly.
           </p>
         </div>
 
@@ -95,8 +98,18 @@ export default function Home() {
               disabled={isLoading || !typeInput}
               className="btn bg-purple-600 border-0 text-white gap-2 px-10 hover:bg-purple-700"
             >
-              {isLoading ? 'Generating...' : 'Generate Mock Data'}
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              {isLoading ? "Generating..." : "Generate Mock Data"}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M5 12h14"></path>
                 <path d="M12 5l7 7-7 7"></path>
               </svg>
@@ -121,43 +134,90 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="card bg-gradient-to-br from-white to-purple-50 shadow-md border border-purple-100">
               <div className="card-body">
-                <h3 className="card-title text-lg text-purple-700">What is TypeScript type mocking?</h3>
-                <p className="text-gray-700">TypeScript type mocking is the process of generating realistic sample data that conforms to TypeScript type definitions. It's useful for development, testing, and documentation purposes, allowing developers to visualize how data structures will look at runtime.</p>
+                <h3 className="card-title text-lg text-purple-700">
+                  What is TypeScript type mocking?
+                </h3>
+                <p className="text-gray-700">
+                  TypeScript type mocking is the process of generating realistic
+                  sample data that conforms to TypeScript type definitions. It's
+                  useful for development, testing, and documentation purposes,
+                  allowing developers to visualize how data structures will look
+                  at runtime.
+                </p>
               </div>
             </div>
 
             <div className="card bg-gradient-to-br from-white to-purple-50 shadow-md border border-purple-100">
               <div className="card-body">
-                <h3 className="card-title text-lg text-purple-700">Why would I need to generate mock data from TypeScript types?</h3>
-                <p className="text-gray-700">Mock data generation is essential for frontend development without a ready backend, testing UI components with various data shapes, creating API documentation examples, and setting up realistic test scenarios for unit and integration tests.</p>
+                <h3 className="card-title text-lg text-purple-700">
+                  Why would I need to generate mock data from TypeScript types?
+                </h3>
+                <p className="text-gray-700">
+                  Mock data generation is essential for frontend development
+                  without a ready backend, testing UI components with various
+                  data shapes, creating API documentation examples, and setting
+                  up realistic test scenarios for unit and integration tests.
+                </p>
               </div>
             </div>
 
             <div className="card bg-gradient-to-br from-white to-purple-50 shadow-md border border-purple-100">
               <div className="card-body">
-                <h3 className="card-title text-lg text-purple-700">What TypeScript types are supported?</h3>
-                <p className="text-gray-700">Our TypeScript mock generator supports primitive types (string, number, boolean), arrays, objects, interfaces, type aliases, union types, and complex nested structures. It also handles special types like Date, null, and optional properties with the "?" modifier.</p>
+                <h3 className="card-title text-lg text-purple-700">
+                  What TypeScript types are supported?
+                </h3>
+                <p className="text-gray-700">
+                  Our TypeScript mock generator supports primitive types
+                  (string, number, boolean), arrays, objects, interfaces, type
+                  aliases, union types, and complex nested structures. It also
+                  handles special types like Date, null, and optional properties
+                  with the "?" modifier.
+                </p>
               </div>
             </div>
 
             <div className="card bg-gradient-to-br from-white to-purple-50 shadow-md border border-purple-100">
               <div className="card-body">
-                <h3 className="card-title text-lg text-purple-700">How can I customize the generated mock data?</h3>
-                <p className="text-gray-700">You can customize mock data by using more specific type declarations or JSDoc comments. For example, you can use string literal types, numeric ranges, or specialized types like "email" or "date" to get more realistic and domain-specific mock values.</p>
+                <h3 className="card-title text-lg text-purple-700">
+                  How can I customize the generated mock data?
+                </h3>
+                <p className="text-gray-700">
+                  You can customize mock data by using more specific type
+                  declarations or JSDoc comments. For example, you can use
+                  string literal types, numeric ranges, or specialized types
+                  like "email" or "date" to get more realistic and
+                  domain-specific mock values.
+                </p>
               </div>
             </div>
 
             <div className="card bg-gradient-to-br from-white to-purple-50 shadow-md border border-purple-100">
               <div className="card-body">
-                <h3 className="card-title text-lg text-purple-700">Can I use this with existing TypeScript projects?</h3>
-                <p className="text-gray-700">Yes! This tool works with any valid TypeScript type definitions. Simply copy your interfaces or types from your existing TypeScript projects and paste them into the generator. The tool will analyze your type structure and generate appropriate mock data.</p>
+                <h3 className="card-title text-lg text-purple-700">
+                  Can I use this with existing TypeScript projects?
+                </h3>
+                <p className="text-gray-700">
+                  Yes! This tool works with any valid TypeScript type
+                  definitions. Simply copy your interfaces or types from your
+                  existing TypeScript projects and paste them into the
+                  generator. The tool will analyze your type structure and
+                  generate appropriate mock data.
+                </p>
               </div>
             </div>
 
             <div className="card bg-gradient-to-br from-white to-purple-50 shadow-md border border-purple-100">
               <div className="card-body">
-                <h3 className="card-title text-lg text-purple-700">How does TypeScript mock data help with testing?</h3>
-                <p className="text-gray-700">TypeScript mock data provides consistent test fixtures that match your actual data models. This ensures your tests are reliable and closely simulate real application data. It also makes it easier to test edge cases by quickly generating variations of your data structures.</p>
+                <h3 className="card-title text-lg text-purple-700">
+                  How does TypeScript mock data help with testing?
+                </h3>
+                <p className="text-gray-700">
+                  TypeScript mock data provides consistent test fixtures that
+                  match your actual data models. This ensures your tests are
+                  reliable and closely simulate real application data. It also
+                  makes it easier to test edge cases by quickly generating
+                  variations of your data structures.
+                </p>
               </div>
             </div>
           </div>
@@ -172,19 +232,38 @@ export default function Home() {
           <div className="bg-gradient-to-br from-white to-purple-50 rounded-lg p-6 shadow-md border border-purple-100">
             <ol className="list-decimal pl-5 space-y-4 text-gray-700">
               <li>
-                <strong className="text-purple-700">Define your TypeScript interface or type</strong> - Start by entering your TypeScript type definition in the left panel. This can be an interface, type alias, or any valid TypeScript type declaration.
+                <strong className="text-purple-700">
+                  Define your TypeScript interface or type
+                </strong>{" "}
+                - Start by entering your TypeScript type definition in the left
+                panel. This can be an interface, type alias, or any valid
+                TypeScript type declaration.
               </li>
               <li>
-                <strong className="text-purple-700">Click "Generate Mock Data"</strong> - Once your type is defined, click the button to analyze your type structure and generate appropriate mock data.
+                <strong className="text-purple-700">
+                  Click "Generate Mock Data"
+                </strong>{" "}
+                - Once your type is defined, click the button to analyze your
+                type structure and generate appropriate mock data.
               </li>
               <li>
-                <strong className="text-purple-700">View and use your mock data</strong> - The generated JSON will appear in the right panel. You can copy this data for use in your development, testing, or documentation.
+                <strong className="text-purple-700">
+                  View and use your mock data
+                </strong>{" "}
+                - The generated JSON will appear in the right panel. You can
+                copy this data for use in your development, testing, or
+                documentation.
               </li>
             </ol>
 
             <div className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg border border-purple-100">
               <h4 className="font-bold text-purple-700">Pro Tip</h4>
-              <p className="text-gray-700">For advanced use cases, you can create complex nested types that combine interfaces, unions, and generics. The mock generator will recursively create appropriate mock values for each level of your type hierarchy.</p>
+              <p className="text-gray-700">
+                For advanced use cases, you can create complex nested types that
+                combine interfaces, unions, and generics. The mock generator
+                will recursively create appropriate mock values for each level
+                of your type hierarchy.
+              </p>
             </div>
           </div>
         </section>
@@ -196,74 +275,158 @@ export default function Home() {
               <div>
                 <div className="flex items-center mb-4">
                   <div className="bg-purple-100 rounded-full p-2 mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-600" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 text-purple-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-purple-700">About Tool</h3>
+                  <h3 className="text-lg font-semibold text-purple-700">
+                    About Tool
+                  </h3>
                 </div>
-                <p className="text-gray-600 mb-4">TypeScript Mock Generator helps developers create realistic test data from TypeScript interfaces, enhancing development workflow and testing efficiency.</p>
-
+                <p className="text-gray-600 mb-4">
+                  TypeScript Mock Generator helps developers create realistic
+                  test data from TypeScript interfaces, enhancing development
+                  workflow and testing efficiency.
+                </p>
               </div>
 
               <div>
                 <div className="flex items-center mb-4">
                   <div className="bg-purple-100 rounded-full p-2 mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-600" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 text-purple-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-purple-700">Resources</h3>
+                  <h3 className="text-lg font-semibold text-purple-700">
+                    Resources
+                  </h3>
                 </div>
                 <ul className="space-y-2">
                   <li className="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-purple-500 mr-2"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
-                    <a href="/privacy" className="text-purple-600 hover:text-purple-800 transition-colors">Privacy Policy</a>
+                    <a
+                      href="/privacy"
+                      className="text-purple-600 hover:text-purple-800 transition-colors"
+                    >
+                      Privacy Policy
+                    </a>
                   </li>
                   <li className="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-purple-500 mr-2"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
-                    <a href="/terms" className="text-purple-600 hover:text-purple-800 transition-colors">Terms of Use</a>
+                    <a
+                      href="/terms"
+                      className="text-purple-600 hover:text-purple-800 transition-colors"
+                    >
+                      Terms of Use
+                    </a>
                   </li>
                   <li className="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-purple-500 mr-2"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
-                    <a href="/about" className="text-purple-600 hover:text-purple-800 transition-colors">About Us</a>
+                    <a
+                      href="/about"
+                      className="text-purple-600 hover:text-purple-800 transition-colors"
+                    >
+                      About Us
+                    </a>
                   </li>
                 </ul>
-
               </div>
 
               <div>
                 <div className="flex items-center mb-4">
                   <div className="bg-purple-100 rounded-full p-2 mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-600" viewBox="0 0 20 20" fill="currentColor">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 text-purple-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
                       <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                       <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-purple-700">Contact</h3>
+                  <h3 className="text-lg font-semibold text-purple-700">
+                    Contact
+                  </h3>
                 </div>
-                <p className="text-gray-600 mb-3">Have questions or feedback? We'd love to hear from you:</p>
-                <a href="mailto:turbo76.work@gmial.com" className="flex items-center text-purple-600 hover:text-purple-800 transition-colors mb-6">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <p className="text-gray-600 mb-3">
+                  Have questions or feedback? We'd love to hear from you:
+                </p>
+                <a
+                  href="mailto:turbo76.work@gmial.com"
+                  className="flex items-center text-purple-600 hover:text-purple-800 transition-colors mb-6"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 mr-2"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
                   turbo76.work@gmial.com
                 </a>
-
-
               </div>
             </div>
           </div>
 
           <div className="text-center py-4 border-t border-purple-200">
-            <p className="text-gray-600">© {new Date().getFullYear()} TypeScript Mock Generator. All Rights Reserved.</p>
+            <p className="text-gray-600">
+              © {new Date().getFullYear()} TypeScript Mock Generator. All Rights
+              Reserved.
+            </p>
           </div>
         </footer>
       </div>
